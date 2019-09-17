@@ -18,7 +18,7 @@
     <h1>Tap Tap Piano</h1>
 
     <div class="music-selection">
-        <select id="melodies" name="melodies" multiple="multiple">
+        <select id="melodies" multiple="multiple">
             <option class="music-names" data-song-name="London-Bridge">London Bridge</option>
             <option class="music-names" data-song-name="Oh-Susanna" selected="selected">Oh Susanna</option>
             <option class="music-names" data-song-name="Au-Clair-De-La-Lune">Au Clair De La Lune</option>
@@ -27,64 +27,64 @@
             <option class="music-names" data-song-name="We-Wish-You-A-Merry-Christmas" selected="selected">We Wish You A Merry Christmas</option>
         </select>
     </div>
+
     <div class="music-player">
         <audio controls autoplay> 
             <source class="song-sources" src="Songs/London-Bridge.mp3" type="audio/mpeg">
         </audio>
     </div>
-        
 
-    <p id="display-name"></p>   <!-- This need to change according to the music selected -->
+    <p id="display-name"></p>   <!-- This needs to change according to the music selected -->
 
     <ul class="set">
-        <li class="white C active">C</li> 
+        <li class="white C active pointer">C</li> 
             <audio id="do">
-                <source class= "C-note" src="Notes/C.wav" type="audio/mpeg">
+                <source src="Notes/C.wav" type="audio/mpeg" preload="auto">
              </audio>
 
-        <li class="black Db"></li> 
+        <li class="black Db pointer"></li> 
 
-        <li class="white D active">D</li> 
+        <li class="white D active pointer">D</li> 
             <audio id="ré">
-                 <source src="Notes/D.wav" type="audio/mpeg">
+                 <source src="Notes/D.wav" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="black Eb"></li> 
+        <li class="black Eb pointer"></li> 
 
-        <li class="white E active">E</li> 
+        <li class="white E active pointer">E</li> 
             <audio id="mi">
-                <source src="Notes/E.wav" type="audio/mpeg">
+                <source src="Notes/E.wav" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="white F active">F</li> 
+        <li class="white F active pointer">F</li> 
             <audio id="fa">
-                <source src="Notes/F.wav" type="audio/mpeg">
+                <source src="Notes/F.wav" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="black Gb"></li> 
+        <li class="black Gb pointer"></li> 
 
-        <li class="white G active">G</li> 
+        <li class="white G active pointer">G</li> 
             <audio id="sol">
-                <source src="Notes/G.wav" type="audio/mpeg">
+                <source src="Notes/G.wav" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="black Ab"></li> 
+        <li class="black Ab pointer"></li> 
 
-        <li class="white A active">A</li> 
+        <li class="white A active pointer">A</li> 
             <audio id="la">
-                <source src="Notes/A.wav" type="audio/mpeg">
+                <source src="Notes/A.wav" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="black Bb"></li>
+        <li class="black Bb pointer"></li>
 
-        <li class="white B active">B</li>
+        <li class="white B active pointer">B</li>
             <audio id="si">
-                <source src="Notes/B4thisone.wav" type="audio/mpeg">
+                <source src="Notes/B4thisone.wav" type="audio/mpeg" preload="auto">
             </audio>
       </ul>
 
          <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-         <script src="./myGameJS.jsx"></script>
+         <script src="./myGameJS.js"></script>
         </body>
 
 
