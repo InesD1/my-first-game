@@ -14,7 +14,15 @@
     The aim is to memorize simple melodies to be able to reproduce them on a real piano.
     You can choose from a list of melodies -->
 
-<body> 
+<body class="animated"> 
+
+    <!-- <canvas id="myCanvas" width="480" height="320">
+            <img class="logoImage" src="Home/Images/Logo.png">
+            <img class="bgImage" src="Home/Images/background-image-partition.jpg" alt="bgImage">
+            <img class="playImage" src="Home/Images/Play.png">
+            <img class="instructImage" src="Home/Images/Instructions.png">
+    </canvas> -->
+
     <h1>Tap Tap Piano</h1>
 
     <div class="music-selection">
@@ -29,57 +37,72 @@
     </div>
 
     <div class="music-player">
-        <audio controls autoplay> 
-            <source class="song-sources" src="Songs/London-Bridge.mp3" type="audio/mpeg">
+        <audio controls id="song-sources"> 
+            <source id="player" src="" type="audio/mpeg">
         </audio>
     </div>
 
-    <p id="display-name"></p>   <!-- This needs to change according to the music selected -->
+    <p id="display-name"></p>
 
     <ul class="set">
         <li class="white C active pointer">C</li> 
             <audio id="do">
-                <source src="Notes/C.wav" type="audio/mpeg" preload="auto">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3C.mp3" type="audio/mpeg" preload="auto">
              </audio>
 
         <li class="black Db pointer"></li> 
+            <audio id="ré-bémole">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Cs.mp3" type="audio/mpeg" preload="auto">
+             </audio>
 
         <li class="white D active pointer">D</li> 
             <audio id="ré">
-                 <source src="Notes/D.wav" type="audio/mpeg" preload="auto">
+                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3D.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
         <li class="black Eb pointer"></li> 
+            <audio id="mi-bémole">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Ds.mp3" type="audio/mpeg" preload="auto">
+           </audio>
 
         <li class="white E active pointer">E</li> 
             <audio id="mi">
-                <source src="Notes/E.wav" type="audio/mpeg" preload="auto">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3E.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
         <li class="white F active pointer">F</li> 
             <audio id="fa">
-                <source src="Notes/F.wav" type="audio/mpeg" preload="auto">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3F.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
         <li class="black Gb pointer"></li> 
+            <audio id="sol-bémole">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Fs.mp3" type="audio/mpeg" preload="auto">
+            </audio>
 
         <li class="white G active pointer">G</li> 
             <audio id="sol">
-                <source src="Notes/G.wav" type="audio/mpeg" preload="auto">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3G.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
         <li class="black Ab pointer"></li> 
+            <audio id="la-bémole">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Gs.mp3" type="audio/mpeg" preload="auto">
+            </audio>
 
         <li class="white A active pointer">A</li> 
             <audio id="la">
-                <source src="Notes/A.wav" type="audio/mpeg" preload="auto">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3A.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
         <li class="black Bb pointer"></li>
+            <audio id="si-bémole">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3As.mp3" type="audio/mpeg" preload="auto">
+            </audio>
 
         <li class="white B active pointer">B</li>
             <audio id="si">
-                <source src="Notes/B4thisone.wav" type="audio/mpeg" preload="auto">
+                <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3B.mp3" type="audio/mpeg" preload="auto">
             </audio>
       </ul>
 

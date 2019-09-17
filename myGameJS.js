@@ -3,46 +3,63 @@
 //Add a sound to each piano key
 
 $(document).ready(function() {
-  $('.white.C').click(function(){
+
+  $('.C').click(function(){
     $('audio#do')[0].play()
   });
 
-  $('.white.D').click(function(){
+  $('.D').click(function(){
     $('audio#ré')[0].play()
   });
 
-  $('.white.E').click(function(){
+  $('.Db').click(function(){
+    $('audio#ré-bémole')[0].play()
+  });
+
+  $('.Eb').click(function(){
+    $('audio#mi-bémole')[0].play()
+  });
+
+  $('.E').click(function(){
     $('audio#mi')[0].play()
   });
 
-  $('.white.F').click(function(){
+  $('.F').click(function(){
     $('audio#fa')[0].play()
   });
 
-  $('.white.G').click(function(){
+  $('.G').click(function(){
     $('audio#sol')[0].play()
   });
 
-  $('.white.A').click(function(){
+  $('.Gb').click(function(){
+    $('audio#sol-bémole')[0].play()
+  });
+
+  $('.A').click(function(){
     $('audio#la')[0].play()
   });
 
-  $('.white.B').click(function(){
+  $('.Ab').click(function(){
+    $('audio#la-bémole')[0].play()
+  });
+
+  $('.B').click(function(){
     $('audio#si')[0].play()
+  });
+
+  $('.Bb').click(function(){
+    $('audio#si-bémole')[0].play()
   });
 
 //Chose a song from the list and double click or press enter to play
 
-    // $('.music-names').click(function(){
-    //   debugger
-    //   let londonBridge = $(this).data('London-Bridge')
-    //   $('.song-sources').attr('src', `Songs/${londonBridge}.mp3`)
-    // });
-
-    // $('.music-names').dblclick(function(){
-    //   let ohSusanna = $(this).data('Oh-Susanna')
-    //   $('.song-sources').attr('src', `Songs/${ohSusanna}.mp3`)
-    // });
+  $('.music-names').click(function(){
+    let playlist = $(this).data('songName')
+      document.getElementById("song-sources").innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
+      //$("#song-sources").html(`<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`)
+      $('#song-sources')[0].play() 
+  });
 
 //Display the name of the song selected
 
@@ -52,8 +69,7 @@ $(document).ready(function() {
   });
 
 //Connects keyboard letters to piano keys
-
-  window.addEventListener("keydown", function(e){
+  document.addEventListener("keydown", function(e){
       switch (e.keyCode) {
         case 67:
           $('audio#do')[0].play()      
@@ -88,48 +104,113 @@ $(document).ready(function() {
 //Highlight each note in a particular order and on a particular interval depending on the song selected
 //Once clicked, the piano key goes back to normal
 
+  // let LondonBrigeMelody = ['G', 'A', 'G', 'F', 'E', 'F', 'G', '', 'D', 'E', 'F', '', 'E', 'F', 'G', '', 'G', 'A', 'G', 'F', 'E', 'F', 'G', '', 'D', '', 'G', '', 'E', 'C', '', '']; 
+  // let JingleBellsMelody = ['E', 'E', 'E', '', 'E', 'E', 'E', '', 'E', 'G', 'C', 'D', 'E', '', '', '', 'F', 'F', 'F', 'F', 'F', 'E', 'E', 'E', 'E', 'D', 'D', 'E', 'D', '', 'G', '']; 
+  
+  let noteDo = 'C'
+  for(let i = 0 ; i < noteDo.length; i++){
+  highlightedKey(noteDo[i]);
+  }
 
-  // var light;   
-
-  // function highlightedKey(key){
-  //   $(`li.${key}`).fadeIn(750, function(){
-  //     $(this).addClass('highlight'); 
-  //   })
-  //   setTimeout(function() {
-  //     $(`li.${key}`).removeClass('highlight', 2000); 
-  //   }, 1000)
-    
-  //   light = setTimeout(function() {
-  //     highlightedKey('A')
-  //   }, 2000);
-  // }
-
-
-  let song = ['A', 'C', 'A', 'A', 'D']; 
-
-  for(let i = 0 ; i < song.length; i++){
-  highlightedKey2(song[i]);
-}
-
-  function highlightedKey2(key){
-    setTimeout(function() {
+  function highlightedKey(key){
       $(`li.${key}`).fadeIn(750, function(){
         $(this).addClass('highlight'); 
       })
-      
-      // $(`li.${key}`).removeClass('highlight'); 
 
-      setTimeout(function() {
-        $(`li.${key}`).removeClass('highlight', 2000); 
-      }, 1000)
-
-    }, 1000)
+      $(`li.${key}`).click(function(){
+        $(this).toggleClass('highlight'); 
+      })
   }
 
-  // $(document).ready(function(){
-  //   highlightedKey2('A');
-  // });
+  let noteRé = 'D'
+  for(let i = 0 ; i < noteRé.length; i++){
+    highlightedKey1(noteRé[i]);
+    }
+  
+    function highlightedKey1(key){
+        $(`li.${key}`).fadeIn(750, function(){
+          $(this).addClass('highlight'); 
+        })
+  
+        $(`li.${key}`).click(function(){
+          $(this).toggleClass('highlight'); 
+        })
+    }
 
+  let noteMi = 'E'
+  for(let i = 0 ; i < noteMi.length; i++){
+    highlightedKey2(noteMi[i]);
+    }
+  
+    function highlightedKey2(key){
+        $(`li.${key}`).fadeIn(750, function(){
+          $(this).addClass('highlight'); 
+        })
+  
+        $(`li.${key}`).click(function(){
+          $(this).toggleClass('highlight'); 
+        })
+    }
+
+  let noteFa = 'F'
+  for(let i = 0 ; i < noteFa.length; i++){
+    highlightedKey3(noteFa[i]);
+    }
+  
+    function highlightedKey3(key){
+        $(`li.${key}`).fadeIn(750, function(){
+          $(this).addClass('highlight'); 
+        })
+  
+        $(`li.${key}`).click(function(){
+          $(this).toggleClass('highlight'); 
+        })
+    }
+
+  let noteSol = 'G'
+  for(let i = 0 ; i < noteSol.length; i++){
+    highlightedKey4(noteSol[i]);
+    }
+  
+    function highlightedKey4(key){
+        $(`li.${key}`).fadeIn(750, function(){
+          $(this).addClass('highlight'); 
+        })
+  
+        $(`li.${key}`).click(function(){
+          $(this).toggleClass('highlight'); 
+        })
+    }
+
+  let noteLa = 'A'
+  for(let i = 0 ; i < noteLa.length; i++){
+    highlightedKey5(noteLa[i]);
+    }
+  
+    function highlightedKey5(key){
+        $(`li.${key}`).fadeIn(750, function(){
+          $(this).addClass('highlight'); 
+        })
+  
+        $(`li.${key}`).click(function(){
+          $(this).toggleClass('highlight'); 
+        })
+    }
+
+  let noteSi = 'B'
+  for(let i = 0 ; i < noteSi.length; i++){
+    highlightedKey6(noteSi[i]);
+    }
+  
+    function highlightedKey6(key){
+        $(`li.${key}`).fadeIn(750, function(){
+          $(this).addClass('highlight'); 
+        })
+  
+        $(`li.${key}`).click(function(){
+          $(this).toggleClass('highlight'); 
+        })
+    }
 });
 
 //HOMEPAGE
