@@ -14,27 +14,22 @@
     The aim is to memorize simple melodies to be able to reproduce them on a real piano.
     You can choose from a list of melodies -->
 
-<body class="animated"> 
+<body> 
 
-    <!-- <canvas id="myCanvas" width="480" height="320">
-            <img class="logoImage" src="Home/Images/Logo.png">
-            <img class="bgImage" src="Home/Images/background-image-partition.jpg" alt="bgImage">
-            <img class="playImage" src="Home/Images/Play.png">
-            <img class="instructImage" src="Home/Images/Instructions.png">
-    </canvas> -->
-
-    <h1>Tap Tap Piano</h1>
+    <h1>Tap Tap Piano Lesson</h1>
 
     <div class="music-selection">
         <select id="melodies" multiple="multiple">
-            <option class="music-names" data-song-name="London-Bridge">London Bridge</option>
-            <option class="music-names" data-song-name="Oh-Susanna" selected="selected">Oh Susanna</option>
-            <option class="music-names" data-song-name="Au-Clair-De-La-Lune">Au Clair De La Lune</option>
-            <option class="music-names" data-song-name="Jingle-Bells" selected="selected">  Jingle Bells</option>
-            <option class="music-names" data-song-name="Twinkle-Twinkle-Little-Star">Twinkle, Twinkle, Little Star</option>
-            <option class="music-names" data-song-name="We-Wish-You-A-Merry-Christmas" selected="selected">We Wish You A Merry Christmas</option>
+            <option class="music-names" data-title="London-Bridge">London Bridge</option>
+            <option class="music-names" data-title="Oh-Susanna" selected="selected">Oh Susanna</option>
+            <option class="music-names" data-title="Au-Clair-De-La-Lune">Au Clair De La Lune</option>
+            <option class="music-names" data-title="Jingle-Bells" selected="selected">  Jingle Bells</option>
+            <option class="music-names" data-title="Twinkle-Twinkle-Little-Star">Twinkle, Twinkle, Little Star</option>
+            <option class="music-names" data-title="We-Wish-You-A-Merry-Christmas" selected="selected">We Wish You A Merry Christmas</option>
         </select>
     </div>
+
+    <p id="display-name"></p>
 
     <div class="music-player">
         <audio controls id="song-sources"> 
@@ -42,11 +37,9 @@
         </audio>
     </div>
 
-    <p id="display-name"></p>
-
-    <ul class="set">
-        <li class="white C active pointer">C</li> 
-            <audio id="do">
+    <ul class="set ">
+        <li class="white C pointer">C</li> 
+            <audio id="do"> 
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3C.mp3" type="audio/mpeg" preload="auto">
              </audio>
 
@@ -55,7 +48,7 @@
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Cs.mp3" type="audio/mpeg" preload="auto">
              </audio>
 
-        <li class="white D active pointer">D</li> 
+        <li class="white D pointer">D</li> 
             <audio id="ré">
                  <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3D.mp3" type="audio/mpeg" preload="auto">
             </audio>
@@ -65,12 +58,12 @@
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Ds.mp3" type="audio/mpeg" preload="auto">
            </audio>
 
-        <li class="white E active pointer">E</li> 
+        <li class="white E pointer">E</li> 
             <audio id="mi">
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3E.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="white F active pointer">F</li> 
+        <li class="white F pointer">F</li> 
             <audio id="fa">
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3F.mp3" type="audio/mpeg" preload="auto">
             </audio>
@@ -80,7 +73,7 @@
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Fs.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="white G active pointer">G</li> 
+        <li class="white G pointer">G</li> 
             <audio id="sol">
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3G.mp3" type="audio/mpeg" preload="auto">
             </audio>
@@ -90,7 +83,7 @@
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3Gs.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="white A active pointer">A</li> 
+        <li class="white A pointer">A</li> 
             <audio id="la">
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3A.mp3" type="audio/mpeg" preload="auto">
             </audio>
@@ -100,7 +93,7 @@
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3As.mp3" type="audio/mpeg" preload="auto">
             </audio>
 
-        <li class="white B active pointer">B</li>
+        <li class="white B pointer">B</li>
             <audio id="si">
                 <source src="https://pianoiseasy2.com/piano/wp-content/themes/colormag-child/tones/3B.mp3" type="audio/mpeg" preload="auto">
             </audio>

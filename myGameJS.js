@@ -1,217 +1,263 @@
 //PIANO GAME
+const cSound = $("audio#do")[0];
+const dbSound = $("audio#ré-bémole")[0];
+const dSound = $("audio#ré")[0];
+const ebSound = $("audio#mi-bémole")[0];
+const eSound = $("audio#mi")[0];
+const fSound = $("audio#fa")[0];
+const gbSound = $("audio#sol-bémole")[0];
+const gSound = $("audio#sol")[0];
+const abSound = $("audio#la-bémole")[0];
+const aSound = $("audio#la")[0];
+const sbSound = $("audio#si-bémole")[0];
+const sSound = $("audio#si")[0];
 
 //Add a sound to each piano key
-
 $(document).ready(function() {
-
   $('.C').click(function(){
-    $('audio#do')[0].play()
-  });
-
-  $('.D').click(function(){
-    $('audio#ré')[0].play()
+    cSound.play();
+    setTimeout(() => {
+      cSound.pause();
+      cSound.currentTime = 0;
+      }, 500);
   });
 
   $('.Db').click(function(){
-    $('audio#ré-bémole')[0].play()
+    dbSound.play();
+    setTimeout(() => {
+      dbSound.pause();
+      dbSound.currentTime = 0;
+      }, 500);
+  });
+
+  $('.D').click(function(){
+    dSound.play();
+    setTimeout(() => {
+      dSound.pause();
+      dSound.currentTime = 0;
+      }, 500);
   });
 
   $('.Eb').click(function(){
-    $('audio#mi-bémole')[0].play()
+    ebSound.play();
+    setTimeout(() => {
+      ebSound.pause();
+      ebSound.currentTime = 0;
+      }, 500);
   });
 
   $('.E').click(function(){
-    $('audio#mi')[0].play()
+    eSound.play();
+    setTimeout(() => {
+      eSound.pause();
+      eSound.currentTime = 0;
+      }, 500);
   });
 
   $('.F').click(function(){
-    $('audio#fa')[0].play()
+    fSound.play();
+    setTimeout(() => {
+      fSound.pause();
+      fSound.currentTime = 0;
+      }, 500);
   });
 
   $('.G').click(function(){
-    $('audio#sol')[0].play()
+    gSound.play();
+    setTimeout(() => {
+      gSound.pause();
+      gSound.currentTime = 0;
+      }, 500);
   });
 
   $('.Gb').click(function(){
-    $('audio#sol-bémole')[0].play()
+    gbSound.play();
+    setTimeout(() => {
+      gbSound.pause();
+      gbSound.currentTime = 0;
+      }, 500);
   });
 
   $('.A').click(function(){
-    $('audio#la')[0].play()
+    aSound.play();
+    setTimeout(() => {
+      aSound.pause();
+      aSound.currentTime = 0;
+      }, 500);
   });
 
   $('.Ab').click(function(){
-    $('audio#la-bémole')[0].play()
+    abSound.play();
+    setTimeout(() => {
+      abSound.pause();
+      abSound.currentTime = 0;
+      }, 500);
   });
 
   $('.B').click(function(){
-    $('audio#si')[0].play()
+    sSound.play();
+    setTimeout(() => {
+      sSound.pause();
+      sSound.currentTime = 0;
+      }, 500);
   });
 
   $('.Bb').click(function(){
-    $('audio#si-bémole')[0].play()
+    sbSound.play();
+    setTimeout(() => {
+      sbSound.pause();
+      sbSound.currentTime = 0;
+      }, 500);
   });
 
 //Chose a song from the list and double click or press enter to play
 
   $('.music-names').click(function(){
-    let playlist = $(this).data('songName')
+    let playlist = $(this).data('title')
       document.getElementById("song-sources").innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
-      //$("#song-sources").html(`<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`)
+      $('#song-sources')[0].load()
       $('#song-sources')[0].play() 
+      processArray(LondonBrigeMelody);
   });
 
 //Display the name of the song selected
-
   $('#melodies').change(function(e){
     var displayName = this.value
     $('#display-name').html(displayName);
   });
 
 //Connects keyboard letters to piano keys
-  document.addEventListener("keydown", function(e){
-      switch (e.keyCode) {
-        case 67:
-          $('audio#do')[0].play()      
-        break;
+document.addEventListener("keydown", function(e){
+  switch (e.keyCode) {
+    case 67:
+      cSound.play();   
+      $(`.${e.key.toUpperCase()}`).toggleClass('active');  //Add a timer + do it for the other letters
+      debugger
+    break;
 
-        case 68:
-          $('audio#ré')[0].play()      
-        break;
+    case 68:
+      dSound.play();      
+    break;
 
-        case 69:
-          $('audio#mi')[0].play()      
-        break;
+    case 69:
+      eSound.play();            
+    break;
 
-        case 70:
-          $('audio#fa')[0].play()      
-        break;
+    case 70:
+      fSound.play();       
+    break;
 
-        case 71:
-          $('audio#sol')[0].play()      
-        break;
+    case 71:
+      gSound.play();               
+    break;
 
-        case 65:
-          $('audio#la')[0].play()      
-        break;
+    case 65:
+      aSound.play();              
+    break;
 
-        case 66:
-          $('audio#si')[0].play()      
-        break;
+    case 66:
+      sSound.play();               
+    break;
 
-    }});
+  }});
+
+//Stop the sound when you let go of the key
+//Add black keys 
+document.addEventListener("keyup", function(e){
+  switch (e.keyCode) {
+    case 67:
+      setTimeout(() => {
+      cSound.pause();
+      cSound.currentTime = 0;
+      }, 500);
+    break;
+
+    case 68:
+      setTimeout(() => {
+      dSound.pause();
+      dSound.currentTime = 0;
+      }, 500);
+    break;
+
+    case 69:
+      setTimeout(() => {
+      eSound.pause();
+      eSound.currentTime = 0;
+      }, 500);
+    break;
+
+    case 70:
+      setTimeout(() => {
+      fSound.pause();
+      fSound.currentTime = 0;
+      }, 500);
+    break;
+
+    case 71:
+      setTimeout(() => {
+      gSound.pause();
+      gSound.currentTime = 0;
+      }, 500);
+    break;
+
+    case 65:
+      setTimeout(() => {
+      aSound.pause();
+      aSound.currentTime = 0;
+      }, 500);
+    break;
+
+    case 66:
+      setTimeout(() => {
+      sSound.pause();
+      sSound.currentTime = 0;
+      }, 500);
+    break;
+    }
+});
 
 //Highlight each note in a particular order and on a particular interval depending on the song selected
 //Once clicked, the piano key goes back to normal
 
-  // let LondonBrigeMelody = ['G', 'A', 'G', 'F', 'E', 'F', 'G', '', 'D', 'E', 'F', '', 'E', 'F', 'G', '', 'G', 'A', 'G', 'F', 'E', 'F', 'G', '', 'D', '', 'G', '', 'E', 'C', '', '']; 
-  // let JingleBellsMelody = ['E', 'E', 'E', '', 'E', 'E', 'E', '', 'E', 'G', 'C', 'D', 'E', '', '', '', 'F', 'F', 'F', 'F', 'F', 'E', 'E', 'E', 'E', 'D', 'D', 'E', 'D', '', 'G', '']; 
-  
-  let noteDo = 'C'
-  for(let i = 0 ; i < noteDo.length; i++){
-  highlightedKey(noteDo[i]);
+let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E','C','','']; 
+
+async function processArray(array) {
+  for(let i = 0; i < array.length; i++){
+    switch(array[i]) {
+      case 'D':
+        await highlightedKey(array[i], 5000);
+        break;
+      case '':
+        await delay(2000)
+        break;
+      default:
+        await highlightedKey(array[i], 750);
+        break;
+    }
   }
+}
 
-  function highlightedKey(key){
-      $(`li.${key}`).fadeIn(750, function(){
-        $(this).addClass('highlight'); 
-      })
+async function delay(time) {
+  return new Promise(function(resolve) {
+    return setTimeout(resolve, time)
+  })
+}
 
-      $(`li.${key}`).click(function(){
-        $(this).toggleClass('highlight'); 
-      })
-  }
+async function highlightedKey(key, time){
+  await delay(time)
+  $(`li.${key}`).fadeIn(750, function(){
+    $(this).addClass('highlight'); 
+  })
 
-  let noteRé = 'D'
-  for(let i = 0 ; i < noteRé.length; i++){
-    highlightedKey1(noteRé[i]);
-    }
+  setTimeout(function() {
+    $(`li.${key}`).removeClass('highlight', 2000); 
+  }, 1000)
   
-    function highlightedKey1(key){
-        $(`li.${key}`).fadeIn(750, function(){
-          $(this).addClass('highlight'); 
-        })
-  
-        $(`li.${key}`).click(function(){
-          $(this).toggleClass('highlight'); 
-        })
-    }
-
-  let noteMi = 'E'
-  for(let i = 0 ; i < noteMi.length; i++){
-    highlightedKey2(noteMi[i]);
-    }
-  
-    function highlightedKey2(key){
-        $(`li.${key}`).fadeIn(750, function(){
-          $(this).addClass('highlight'); 
-        })
-  
-        $(`li.${key}`).click(function(){
-          $(this).toggleClass('highlight'); 
-        })
-    }
-
-  let noteFa = 'F'
-  for(let i = 0 ; i < noteFa.length; i++){
-    highlightedKey3(noteFa[i]);
-    }
-  
-    function highlightedKey3(key){
-        $(`li.${key}`).fadeIn(750, function(){
-          $(this).addClass('highlight'); 
-        })
-  
-        $(`li.${key}`).click(function(){
-          $(this).toggleClass('highlight'); 
-        })
-    }
-
-  let noteSol = 'G'
-  for(let i = 0 ; i < noteSol.length; i++){
-    highlightedKey4(noteSol[i]);
-    }
-  
-    function highlightedKey4(key){
-        $(`li.${key}`).fadeIn(750, function(){
-          $(this).addClass('highlight'); 
-        })
-  
-        $(`li.${key}`).click(function(){
-          $(this).toggleClass('highlight'); 
-        })
-    }
-
-  let noteLa = 'A'
-  for(let i = 0 ; i < noteLa.length; i++){
-    highlightedKey5(noteLa[i]);
-    }
-  
-    function highlightedKey5(key){
-        $(`li.${key}`).fadeIn(750, function(){
-          $(this).addClass('highlight'); 
-        })
-  
-        $(`li.${key}`).click(function(){
-          $(this).toggleClass('highlight'); 
-        })
-    }
-
-  let noteSi = 'B'
-  for(let i = 0 ; i < noteSi.length; i++){
-    highlightedKey6(noteSi[i]);
-    }
-  
-    function highlightedKey6(key){
-        $(`li.${key}`).fadeIn(750, function(){
-          $(this).addClass('highlight'); 
-        })
-  
-        $(`li.${key}`).click(function(){
-          $(this).toggleClass('highlight'); 
-        })
-    }
+}
 });
+
+// let JingleBellsMelody = ['E','E','E','','E','E','E','','E','G','C','D','E','','','','F','F','F','F','F','E','E','E','E','D','D','E','D','','G','']; 
+// let TwinkleMelody = ['C','C','G','G','A','A','G','','F','F','E','E','D','D','C','','G','G','F','F','E','E','D','','G','G','F','F','E','E','D','','C','C','G','G','A','A','G','','F','F','E','E','D','D','C','']
 
 //HOMEPAGE
 
