@@ -82,7 +82,7 @@ function chooseMusic(someName) {
     songSources.innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
     songSources.load(); 
     songSources.play();
-    processArray(LondonBrigeMelody);
+    processArray(OhSusannaMelody);
   }); 
 }
 chooseMusic(musicName); 
@@ -207,8 +207,8 @@ document.addEventListener("keyup", function(e){
 //Highlight each note in a particular order and on a particular interval depending on the song selected
 //Once clicked, the piano key goes back to normal
 
-let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E']; 
-// let OhSusannaMelody = ['C','D','E','G','G','','A','G','E','C','','D','E','E','D','C','D','','','C','D','E','G','G','','A','G','E','C','','D','E','E','D','D','C','','','','F','','F','','A','A','','A','G','G','E','C','D','','','C','D','E','G','G','','A','G','E','C','D','E','E','D','D','C']
+// let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E']; 
+let OhSusannaMelody = ['C','D','E','G','G','','A','G','E','C','','D','E','E','D','C','D','','','C','D','E','G','G','','A','G','E','C','','D','E','E','D','D','C','','','','F','','F','','A','A','','A','G','G','E','C','D','','','C','D','E','G','G','','A','G','E','C','D','E','E','D','D','C']
 async function processArray(array) {
   for(let i = 0; i < array.length; i++){
     switch(array[i]) {
