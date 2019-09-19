@@ -82,7 +82,7 @@ function chooseMusic(someName) {
     songSources.innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
     songSources.load(); 
     songSources.play();
-    processArray(OhSusannaMelody);
+    processArray(LondonBrigeMelody);
   }); 
 }
 chooseMusic(musicName); 
@@ -150,7 +150,6 @@ function keySoundPlay(e) {
 
 //Stop the sound when you let go of the key
 //Add black keys 
-
 document.addEventListener("keyup", function(e){
   switch (e.keyCode) {
     case 67:
@@ -207,8 +206,7 @@ document.addEventListener("keyup", function(e){
 //Highlight each note in a particular order and on a particular interval depending on the song selected
 //Once clicked, the piano key goes back to normal
 
-// let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E']; 
-let OhSusannaMelody = ['C','D','E','G','G','','A','G','E','C','','D','E','E','D','C','D','','','C','D','E','G','G','','A','G','E','C','','D','E','E','D','D','C','','','','F','','F','','A','A','','A','G','G','E','C','D','','','C','D','E','G','G','','A','G','E','C','D','E','E','D','D','C']
+let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E']; 
 async function processArray(array) {
   for(let i = 0; i < array.length; i++){
     switch(array[i]) {
@@ -219,7 +217,7 @@ async function processArray(array) {
         await delay(1000)
         break;
       default:
-        await highlightedKey(array[i], 500);
+        await highlightedKey(array[i], 750);
         break;
     }
   }
@@ -245,11 +243,5 @@ async function highlightedKey(key, time){
 
 // let JingleBellsMelody = ['E','E','E','','E','E','E','','E','G','C','D','E','','','','F','F','F','F','F','E','E','E','E','D','D','E','D','','G','']; 
 // let TwinkleMelody = ['C','C','G','G','A','A','G','','F','F','E','E','D','D','C','','G','G','F','F','E','E','D','','G','G','F','F','E','E','D','','C','C','G','G','A','A','G','','F','F','E','E','D','D','C','']
-
-//HOMEPAGE
-
-//Homepage with mode selection and enter button
-
-//Mode 1 : play with along with the melody in the background
-
-//Mode 2 : play on your own without any melody
+// let OhSusannaMelody = ['C','D','E','G','G','','A','G','E','C','','D','E','E','D','C','D','','','C','D','E','G','G','','A','G','E','C','','D','E','E','D','D','C','','','','F','','F','','A','A','','A','G','G','E','C','D','','','C','D','E','G','G','','A','G','E','C','D','E','E','D','D','C']
+// let AuClairDeLaLuneMelody = ['C','C','C','D','E','','C','E','D','D','C','C','C','C','D','E','','C','E','D','D','C'
