@@ -12,127 +12,114 @@ const aSound = $("audio#la")[0];
 const sbSound = $("audio#si-bémole")[0];
 const sSound = $("audio#si")[0];
 
+const musicName = $('.music-names'); 
+const songSources = $('#song-sources')[0]; 
+
+const melodies = $('#melodies'); 
+
+
 //Add a sound to each piano key
-$(document).ready(function() {
+function clickSound(someSound){
+  someSound.play();
+  setTimeout(() => {
+    someSound.pause();
+    someSound.currentTime = 0;
+    }, 500);
+}
+
   $('.C').click(function(){
-    cSound.play();
-    setTimeout(() => {
-      cSound.pause();
-      cSound.currentTime = 0;
-      }, 500);
+    clickSound(cSound)
   });
 
   $('.Db').click(function(){
-    dbSound.play();
-    setTimeout(() => {
-      dbSound.pause();
-      dbSound.currentTime = 0;
-      }, 500);
+    clickSound(dbSound)
   });
 
   $('.D').click(function(){
-    dSound.play();
-    setTimeout(() => {
-      dSound.pause();
-      dSound.currentTime = 0;
-      }, 500);
+    clickSound(dSound)
   });
 
   $('.Eb').click(function(){
-    ebSound.play();
-    setTimeout(() => {
-      ebSound.pause();
-      ebSound.currentTime = 0;
-      }, 500);
+    clickSound(ebSound)
   });
 
   $('.E').click(function(){
-    eSound.play();
-    setTimeout(() => {
-      eSound.pause();
-      eSound.currentTime = 0;
-      }, 500);
+    clickSound(eSound)
   });
 
   $('.F').click(function(){
-    fSound.play();
-    setTimeout(() => {
-      fSound.pause();
-      fSound.currentTime = 0;
-      }, 500);
+    clickSound(fSound)
   });
 
   $('.G').click(function(){
-    gSound.play();
-    setTimeout(() => {
-      gSound.pause();
-      gSound.currentTime = 0;
-      }, 500);
+    clickSound(gSound)
   });
 
   $('.Gb').click(function(){
-    gbSound.play();
-    setTimeout(() => {
-      gbSound.pause();
-      gbSound.currentTime = 0;
-      }, 500);
+    clickSound(gbSound)
   });
 
   $('.A').click(function(){
-    aSound.play();
-    setTimeout(() => {
-      aSound.pause();
-      aSound.currentTime = 0;
-      }, 500);
+    clickSound(aSound)
   });
 
   $('.Ab').click(function(){
-    abSound.play();
-    setTimeout(() => {
-      abSound.pause();
-      abSound.currentTime = 0;
-      }, 500);
+    clickSound(abSound)
   });
 
   $('.B').click(function(){
-    sSound.play();
-    setTimeout(() => {
-      sSound.pause();
-      sSound.currentTime = 0;
-      }, 500);
+    clickSound(sSound)
   });
 
   $('.Bb').click(function(){
-    sbSound.play();
-    setTimeout(() => {
-      sbSound.pause();
-      sbSound.currentTime = 0;
-      }, 500);
+    clickSound(sbSound)
   });
 
-//Chose a song from the list and double click or press enter to play
-
-  $('.music-names').click(function(){
-    let playlist = $(this).data('title')
-      document.getElementById("song-sources").innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
-      $('#song-sources')[0].load()
-      $('#song-sources')[0].play() 
-      processArray(LondonBrigeMelody);
-  });
+//Chose a song from the list and double click to play
+function chooseMusic(someName) {
+  someName.click(function(){
+    const playlist = $(this).data('title'); 
+    songSources.innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
+    songSources.load(); 
+    songSources.play();
+    processArray(LondonBrigeMelody);
+  }); 
+}
+chooseMusic(musicName); 
 
 //Display the name of the song selected
-  $('#melodies').change(function(e){
-    var displayName = this.value
-    $('#display-name').html(displayName);
-  });
+  function displayName(){
+    melodies.change(function(){
+      this.value; 
+      $('#display-name').html(this.value); 
+    });
+  }
+displayName(); 
 
 //Connects keyboard letters to piano keys
-document.addEventListener("keydown", function(e){
+
+// document.addEventListener("keydown", function(e){
+//   $(`.${e.key.toUpperCase()}`).addClass('active');
+//   setTimeout(() => {
+//     $(`.${e.key.toUpperCase()}`).removeClass('active');
+//   }, 100);
+
+function keyLettersDown() {
+  document.addEventListener('keydown', function(e){
+    keySoundPlay(e)
+      const keyUpperCase = $(`.${e.key.toUpperCase()}`); 
+      keyUpperCase.addClass('active');
+      setTimeout(() => {
+        keyUpperCase.removeClass('active');
+      }, 100);
+  });
+}
+keyLettersDown()
+
+function keySoundPlay(e) {
   switch (e.keyCode) {
     case 67:
       cSound.play();   
-      $(`.${e.key.toUpperCase()}`).toggleClass('active');  //Add a timer + do it for the other letters
-      debugger
     break;
 
     case 68:
@@ -158,15 +145,16 @@ document.addEventListener("keydown", function(e){
     case 66:
       sSound.play();               
     break;
-
-  }});
+  }
+}
 
 //Stop the sound when you let go of the key
 //Add black keys 
+
 document.addEventListener("keyup", function(e){
   switch (e.keyCode) {
     case 67:
-      setTimeout(() => {
+      setTimeout(() => { //function w/ parameter, call the function in every case w/ the right note as an argument
       cSound.pause();
       cSound.currentTime = 0;
       }, 500);
@@ -219,19 +207,19 @@ document.addEventListener("keyup", function(e){
 //Highlight each note in a particular order and on a particular interval depending on the song selected
 //Once clicked, the piano key goes back to normal
 
-let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E','C','','']; 
-
+let LondonBrigeMelody = ['G','A','G','F','E','F','G','','D','E','F','','E','F','G','','G','A','G','F','E','F','G','','D','','G','','E']; 
+// let OhSusannaMelody = ['C','D','E','G','G','','A','G','E','C','','D','E','E','D','C','D','','','C','D','E','G','G','','A','G','E','C','','D','E','E','D','D','C','','','','F','','F','','A','A','','A','G','G','E','C','D','','','C','D','E','G','G','','A','G','E','C','D','E','E','D','D','C']
 async function processArray(array) {
   for(let i = 0; i < array.length; i++){
     switch(array[i]) {
-      case 'D':
-        await highlightedKey(array[i], 5000);
-        break;
+      // case 'D':
+      //   await highlightedKey(array[i], 500);
+      //   break;
       case '':
-        await delay(2000)
+        await delay(1000)
         break;
       default:
-        await highlightedKey(array[i], 750);
+        await highlightedKey(array[i], 500);
         break;
     }
   }
@@ -254,7 +242,6 @@ async function highlightedKey(key, time){
   }, 1000)
   
 }
-});
 
 // let JingleBellsMelody = ['E','E','E','','E','E','E','','E','G','C','D','E','','','','F','F','F','F','F','E','E','E','E','D','D','E','D','','G','']; 
 // let TwinkleMelody = ['C','C','G','G','A','A','G','','F','F','E','E','D','D','C','','G','G','F','F','E','E','D','','G','G','F','F','E','E','D','','C','C','G','G','A','A','G','','F','F','E','E','D','D','C','']
