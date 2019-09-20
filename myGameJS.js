@@ -15,7 +15,22 @@ function PianoGame(){
   this.musicName = $('.music-names'); 
   this.songSources = $('#song-sources')[0]; 
   this.melodies = $('#melodies'); 
-
+  this.listOfSongs = {
+    londonBridge: ['G','A','G','F','E','E','F','G','',
+    'D','E','F','F','','E','F','G','G','',
+    'G','A','G','F','E','E','F','G','',
+    'D','D','G','G','E','E',''],
+    auClairDeLaLune: ['F','F','G','A','','G','','F','A','G','G','F','','','',
+    'F','F','G','A','','G','','F','A','G','G','G','F','','','',
+    'G','G','G','G','D','','D','G','F','E','D','C','C','','','',
+    'F','F','F','G','A','','G','F','A','G','G','G','F'],
+    ohSusanna: ['C','D','E','G','G','','A','G','E','','C','','','D','','E','E','E','D','D','C','D','','','','',
+    'C','D','E','G','','G','','A','G','E','','C','','D','E','E','E','E','D','D','D','C','','','',
+    'C','D','E','G','','G','','A','G','E','','C','','','D','E','E','E','D','D','C','D','','','','',
+    'C','D','E','G','','G','','A','G','E','','C','','','D','E','E','D','D','D','','C','','','',
+    '','','F','','','F','','','A','','A','','','A','G','','G','','E','C','D','','','','',
+    'C','D','E','G','','G','','A','G','','E','','C','','D','E','E','E','D','D','D','C','','','',]
+  };
 
   //Add a sound to each piano key
   this.clickSound = function(someSound){
@@ -30,57 +45,71 @@ function PianoGame(){
       let fixThis = this
       $('.C').click(function(){
           fixThis.clickSound(fixThis.cSound)
+          $(this).removeClass('highlight')
       })
       $('.Db').click(function(){
         fixThis.clickSound(fixThis.dbSound)
+        $(this).removeClass('highlight')
       })
       $('.D').click(function(){
         fixThis.clickSound(fixThis.dSound) 
+        $(this).removeClass('highlight')
       })
       $('.Eb').click(function(){
         fixThis.clickSound(fixThis.ebSound)
+        $(this).removeClass('highlight')
       })
       $('.E').click(function(){
         fixThis.clickSound(fixThis.eSound)
+        $(this).removeClass('highlight')
       }) 
       $('.F').click(function(){
         fixThis.clickSound(fixThis.fSound)
+        $(this).removeClass('highlight')
       }) 
       $('.G').click(function(){
         fixThis.clickSound(fixThis.gSound)
+        $(this).removeClass('highlight')
       }) 
       $('.Gb').click(function(){
         fixThis.clickSound(fixThis.gbSound)
+        $(this).removeClass('highlight')
       }) 
       $('.A').click(function(){
         fixThis.clickSound(fixThis.aSound)
+        $(this).removeClass('highlight')
       }) 
       $('.Ab').click(function(){
         fixThis.clickSound(fixThis.abSound)
+        $(this).removeClass('highlight')
       }) 
       $('.B').click(function(){
         fixThis.clickSound(fixThis.sSound)
+        $(this).removeClass('highlight')
       }) 
       $('.Bb').click(function(){
         fixThis.clickSound(fixThis.sbSound)
+        $(this).removeClass('highlight')
       }) 
   }
 
   //Chose a song from the list and click to play
   this.chooseMusic = function(someMusic){
+    let fixThis = this
     var thisClass = this;
     someMusic.click(function(){
       const playlist = $(this).data('title'); 
+      console.log(window[playlist])
       thisClass.songSources.innerHTML = `<source id="player" src="Songs/${playlist}.mp3" type="audio/mpeg" preload="auto">`
       thisClass.songSources.load(); 
       thisClass.songSources.play();
-      processArray(LondonBrigeMelody);
+      processArray(fixThis.listOfSongs[playlist])
     })
   }
 
 //Display the name of the song selected
   this.displayName = function(){
-    melodies.change(function(){
+    this.melodies.change(function(){
       this.value; 
       $('#display-name').html(this.value); 
     });
@@ -88,8 +117,9 @@ function PianoGame(){
 
 //Play the sound when you press the key
   this.keyLettersDown = function(){
+    let fixThis = this
     document.addEventListener('keydown', function(e){
-      keySoundPlay(e)
+      fixThis.keySounds(e)
         const keyUpperCase = $(`.${e.key.toUpperCase()}`); 
           keyUpperCase.addClass('active');
           setTimeout(() => {
@@ -101,132 +131,128 @@ function PianoGame(){
   this.keySounds = function(e){
     switch (e.keyCode) {
       case 67:
-        cSound.play();   
+        this.cSound.play();   
       break;
   
       case 68:
-        dSound.play();      
+        this.dSound.play();      
       break;
   
       case 69:
-        eSound.play();            
+        this.eSound.play();            
       break;
   
       case 70:
-        fSound.play();       
+        this.fSound.play();       
       break;
   
       case 71:
-        gSound.play();               
+        this.gSound.play();               
       break;
   
       case 65:
-        aSound.play();              
+        this.aSound.play();              
       break;
   
       case 66:
-        sSound.play();               
+        this.sSound.play();               
       break;
     }
   }
 
 //Stop the sound when you let go of the key
-this.keyLettersUp = function(){
-  document.addEventListener('keyup', function(e){
-    switch (e.keyCode) {
-      case 67:
-        setTimeout(() => { 
-        cSound.pause();
-        cSound.currentTime = 0;
-        }, 500);
-      break;
-  
-      case 68:
-        setTimeout(() => {
-        dSound.pause();
-        dSound.currentTime = 0;
-        }, 500);
-      break;
-  
-      case 69:
-        setTimeout(() => {
-        eSound.pause();
-        eSound.currentTime = 0;
-        }, 500);
-      break;
-  
-      case 70:
-        setTimeout(() => {
-        fSound.pause();
-        fSound.currentTime = 0;
-        }, 500);
-      break;
-  
-      case 71:
-        setTimeout(() => {
-        gSound.pause();
-        gSound.currentTime = 0;
-        }, 500);
-      break;
-  
-      case 65:
-        setTimeout(() => {
-        aSound.pause();
-        aSound.currentTime = 0;
-        }, 500);
-      break;
-  
-      case 66:
-        setTimeout(() => {
-        sSound.pause();
-        sSound.currentTime = 0;
-        }, 500);
-      break;
-      }
-  });
-}
+  this.keyLettersUp = function(){
+    let fixThis = this
+    document.addEventListener('keyup', function(e){
+      switch (e.keyCode) {
+        case 67:
+          setTimeout(() => { 
+            fixThis.cSound.pause();
+            fixThis.cSound.currentTime = 0;
+          }, 500);
+        break;
+    
+        case 68:
+          setTimeout(() => {
+            fixThis.dSound.pause();
+            fixThis.dSound.currentTime = 0;
+          }, 500);
+        break;
+    
+        case 69:
+          setTimeout(() => {
+            fixThis.eSound.pause();
+            fixThis.eSound.currentTime = 0;
+          }, 500);
+        break;
+    
+        case 70:
+          setTimeout(() => {
+            fixThis.fSound.pause();
+            fixThis.fSound.currentTime = 0;
+          }, 500);
+        break;
+    
+        case 71:
+          setTimeout(() => {
+            fixThis.gSound.pause();
+            fixThis.gSound.currentTime = 0;
+          }, 500);
+        break;
+    
+        case 65:
+          setTimeout(() => {
+            fixThis.aSound.pause();
+            fixThis.aSound.currentTime = 0;
+          }, 500);
+        break;
+    
+        case 66:
+          setTimeout(() => {
+            fixThis.sSound.pause();
+            fixThis.sSound.currentTime = 0;
+          }, 500);
+        break;
+        }
+    });
+  }
 
 //Highlight each note in a particular order and on a particular interval depending on the song selected
-let LondonBrigeMelody = ['G','A','G','F','E','F','G','D','E','F','E','F','G','G','A','G','F','E','F','G','D','G','E']; 
-async function processArray(array) {
-  for(let i = 0; i < array.length; i++){
-    switch(array[i]) {
-      case 'D':
-        await highlightedKey(array[i], 500);
-        break;
-      case '':
-        await delay(100)
-        break;
-      default:
-        await highlightedKey(array[i], 100);
-        break;
+  async function processArray(array) {
+    for(let i = 0; i < array.length; i++){
+      switch(array[i]) {
+        case '':
+          await delay(500)
+          break;
+        default:
+          await highlightedKey(array[i], 500);
+          break;
+      }
     }
   }
-}
 
-async function delay(time) {
-  return new Promise(function(resolve) {
-    return setTimeout(resolve, time)
-  })
-}
+  async function delay(time) {
+    return new Promise(function(resolve) {
+      return setTimeout(resolve, time)
+    })
+  }
 
-async function highlightedKey(key, time){
-  await delay(time)
-  $(`li.${key}`).fadeIn(500, function(){
-    $(this).addClass('highlight'); 
-  })
+  async function highlightedKey(key, time){
+    await delay(time)
+    $(`li.${key}`).fadeIn(500, function(){
+      $(this).addClass('highlight'); 
+    })
 
-  setTimeout(function() {
-    $(`li.${key}`).removeClass('highlight', 100); 
-  }, 500)
-}
-
-// let JingleBellsMelody = ['E','E','E','','E','E','E','','E','G','C','D','E','','','','F','F','F','F','F','E','E','E','E','D','D','E','D','','G','']; 
-// let TwinkleMelody = ['C','C','G','G','A','A','G','','F','F','E','E','D','D','C','','G','G','F','F','E','E','D','','G','G','F','F','E','E','D','','C','C','G','G','A','A','G','','F','F','E','E','D','D','C','']
-// let OhSusannaMelody = ['C','D','E','G','G','','A','G','E','C','','D','E','E','D','C','D','','','C','D','E','G','G','','A','G','E','C','','D','E','E','D','D','C','','','','F','','F','','A','A','','A','G','G','E','C','D','','','C','D','E','G','G','','A','G','E','C','D','E','E','D','D','C']
-// let AuClairDeLaLuneMelody = ['C','C','C','D','E','','C','E','D','D','C','C','C','C','D','E','','C','E','D','D','C']
+    setTimeout(function() {
+      $(`li.${key}`).removeClass('highlight'); 
+    }, 1000)
+  }
 }
 
 let pianoGame = new PianoGame()
 pianoGame.clickEvents();
-pianoGame.chooseMusic(pianoGame.musicName)
+pianoGame.chooseMusic(pianoGame.musicName);
+pianoGame.displayName();
+pianoGame.keyLettersDown();
+pianoGame.keyLettersUp();
+
